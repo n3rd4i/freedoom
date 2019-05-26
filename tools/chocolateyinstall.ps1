@@ -26,6 +26,6 @@ Install-ChocolateyEnvironmentVariable `
 Install-ChocolateyShortcut `
   -ShortcutFilePath "$shortcutPath" `
   -TargetPath "$zandronumLocation\zandronum.exe" `
-  -IconLocation "$toolsDir\assets\freedoom1.ico" `
+  -IconLocation "$toolsDir\assets\playa2a8.ico" `
   -Description "FreeDoom version 0.11.3" `
   -WorkingDirectory "$installLocation"
