@@ -1,31 +1,27 @@
 ﻿$ErrorActionPreference = 'Stop'; # stop on all errors
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$zandronumLocation = "$ENV:LocalAppData\Programs\Zandronum"
-$installLocation = "$ENV:LocalAppData\Programs\FreeDoom"
-$shortcutPath = "$ENV:UserProfile\Desktop\FreeDoom.lnk"
-New-Item -ItemType Directory -Force -Path $installLocation
+. "$(Join-Path $toolsDir commonEnv.ps1)"
+. "$(Join-Path $toolsDir dependenciesEnv.ps1)"
 
-$freeDoomZip = Join-Path $env:TEMP 'freedoom-0.11.3.zip'
+$url = 'https://github.com/freedoom/freedoom/releases/download/v0.11.3/freedoom-0.11.3.zip'
+$freeDoomZip = "$(Join-Path $env:TEMP 'freedoom-0.11.3.zip')"
 $freeDoomArgs = @{
   packageName     = 'FreeDoomWads'
   fileFullPath    = $freeDoomZip
-  url             = 'https://github.com/freedoom/freedoom/releases/download/v0.11.3/freedoom-0.11.3.zip'
-  # unzipLocation   = $installLocation
-  softwareName  = 'freedoom*'
-  checksum        = '55E9A2C7A24651D63654407D2CEC26C2'
-  checksumType    = 'md5'
+  url             = $url
+  checksum        = '28A5EAFBB1285B78937BD408FCDD8F25F915432340EEE79DA692EAE83BCE5E8A'
+  checksumType    = 'sha256'
 }
 Get-ChocolateyWebFile @freeDoomArgs
 7z.exe e -aoa -bd -bb1 -o"$installLocation" -y "$freeDoomZip" 'freedoom-0.11.3/*.*'
 
 Install-ChocolateyEnvironmentVariable `
-  -VariableName "DOOMWADDIR" `
+  -VariableName $envDoomWadDir `
   -VariableValue "$installLocation" `
-  -VariableType 'User'
+  -VariableType Machine
 
 Install-ChocolateyShortcut `
-  -ShortcutFilePath "$shortcutPath" `
-  -TargetPath "$zandronumLocation\zandronum.exe" `
-  -IconLocation "$toolsDir\assets\playa2a8.ico" `
-  -Description "FreeDoom version 0.11.3" `
+  -ShortcutFilePath "$(Join-Path $startMenuDir FreeDoom.lnk)" `
+  -TargetPath "$(Join-Path $zandronumLocation zandronum.exe)" `
+  -IconLocation "$(Join-Path $toolsDir 'assets\playa2a8.ico')" `
   -WorkingDirectory "$installLocation"
