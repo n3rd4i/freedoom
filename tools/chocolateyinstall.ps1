@@ -3,17 +3,20 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 . "$(Join-Path $toolsDir commonEnv.ps1)"
 . "$(Join-Path $toolsDir dependenciesEnv.ps1)"
 
-$url = 'https://github.com/freedoom/freedoom/releases/download/v0.11.3/freedoom-0.11.3.zip'
-$freeDoomZip = "$(Join-Path $env:TEMP 'freedoom-0.11.3.zip')"
+$url = 'https://github.com/freedoom/freedoom/releases/download/v0.12.1/freedoom-0.12.1.zip'
+$zipBaseName = [IO.Path]::GetFileName($url)
+$zipName = [IO.Path]::GetFileNameWithoutExtension($url)
+
+$freeDoomZip = "$(Join-Path $env:TEMP $zipBaseName)"
 $freeDoomArgs = @{
   packageName     = 'FreeDoomWads'
   fileFullPath    = $freeDoomZip
   url             = $url
-  checksum        = '28A5EAFBB1285B78937BD408FCDD8F25F915432340EEE79DA692EAE83BCE5E8A'
+  checksum        = 'F42C6810FC89B0282DE1466C2C9C7C9818031A8D556256A6DB1B69F6A77B5806'
   checksumType    = 'sha256'
 }
 Get-ChocolateyWebFile @freeDoomArgs
-7z.exe e -aoa -bd -bb1 -o"$installLocation" -y "$freeDoomZip" 'freedoom-0.11.3/*.*'
+7z.exe e -aoa -bd -bb1 -o"$installLocation" -y "$freeDoomZip" "$zipName/*.*"
 
 Install-ChocolateyEnvironmentVariable `
   -VariableName $envDoomWadDir `

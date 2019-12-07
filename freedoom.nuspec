@@ -2,10 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>freedoom</id>
-    <version>0.11.3.20191207</version>
+    <version>0.12.1</version>
     <packageSourceUrl>https://github.com/n3rd4i/freedoom.git</packageSourceUrl>
-    <!-- owners is a poor name for maintainers of the package. It sticks around by this name for compatibility reasons. It basically means you. -->
-    <owners>Andrei</owners>
+    <owners>n3rd4i</owners>
     <!-- ============================== -->
 
     <!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -13,7 +12,7 @@
     <authors>https://github.com/freedoom/freedoom/graphs/contributors</authors>
     <!-- projectUrl is required for the community feed -->
     <projectUrl>https://freedoom.github.io/</projectUrl>
-    <iconUrl>https://upload.wikimedia.org/wikipedia/commons/c/ca/Freedoom-logo.png</iconUrl>
+    <iconUrl>https://cdn.statically.io/img/upload.wikimedia.org/wikipedia/commons/c/ca/Freedoom-logo.png</iconUrl>
     <copyright>2017 FreeDoom Github</copyright>
     <!-- If there is a license Url available, it is required for the community feed -->
     <licenseUrl>https://github.com/freedoom/freedoom.github.io/blob/master/COPYING</licenseUrl>
@@ -29,22 +28,18 @@
 The Freedoom project aims to create a complete, free content first person shooter game, but Freedoom by itself is just the raw material for a game. It must be paired with a compatible Doom engine to be played.
 
 More details here: https://github.com/freedoom/freedoom/blob/master/README.adoc
-</description>
+
+    </description>
     <releaseNotes>https://github.com/freedoom/freedoom/releases/tag/v0.11.3</releaseNotes>
-    <!-- =============================== -->      
+    <!-- =============================== -->
 
     <!-- Specifying dependencies and version ranges? https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files -->
     <dependencies>
       <dependency id="7zip.portable" version="19.0" />
-      <dependency id="zandronum" version="3.0.0" />
+      <dependency id="zandronum" version="3.0.1" />
     </dependencies>
-    <!--<provides>NOT YET IMPLEMENTED</provides>-->
-    <!--<conflicts>NOT YET IMPLEMENTED</conflicts>-->
-    <!--<replaces>NOT YET IMPLEMENTED</replaces>-->
   </metadata>
   <files>
-    <!-- this section controls what actually gets packaged into the Chocolatey package -->
     <file src="tools\**" target="tools" />
-    <!--Building from Linux? You may need this instead: <file src="tools/**" target="tools" />-->
   </files>
 </package>
