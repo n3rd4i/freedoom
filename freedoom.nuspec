@@ -3,12 +3,12 @@
   <metadata>
     <id>freedoom</id>
     <version>0.12.1</version>
-    <packageSourceUrl>https://github.com/n3rd4i/freedoom.git</packageSourceUrl>
+    <packageSourceUrl>https://github.com/n3rd4i/freedoom</packageSourceUrl>
     <owners>n3rd4i</owners>
     <!-- ============================== -->
 
     <!-- == SOFTWARE SPECIFIC SECTION == -->
-    <title>freedoom (Install)</title>
+    <title>Freedoom</title>
     <authors>https://github.com/freedoom/freedoom/graphs/contributors</authors>
     <!-- projectUrl is required for the community feed -->
     <projectUrl>https://freedoom.github.io/</projectUrl>
